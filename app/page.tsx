@@ -2,7 +2,7 @@
 import axios from "axios";
 import { ethers } from "ethers";
 import lighthouse from "@lighthouse-web3/sdk";
-import Button from "../lib/components/Button";
+import Button from "./lib/components/Button";
 
 const getFiles = async () => {
   const apikey = await createApiKey();

@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { cookieToInitialState } from "wagmi";
 import { config } from "@/config";
 import Web3ModalProvider from "@/context";
-import NeoBrutalistNavbar from "../lib/components/Navbar";
+import NeoBrutalistNavbar from "./lib/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Fhellow",
