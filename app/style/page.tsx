@@ -1,7 +1,4 @@
 "use client";
-import axios from "axios";
-import { ethers } from "ethers";
-import lighthouse from "@lighthouse-web3/sdk";
 import Button from "../../lib/components/Button";
 
 export default function Home() {
