@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "./Button";
 import menuIcon from "../assets/menu.svg";
 import closeIcon from "../assets/close.svg";
-import componentsData from "../data/componentsData.tsx";
+import componentsData from "../data/componentsData";
 import { generateMenuList } from "./LeftSidebar";
 import githubIcon from "../assets/github.svg";
 
@@ -25,10 +25,7 @@ const Header = () => {
               <Link to="/components/card">Components</Link>
             </li>
             <li className="inline-block p-2 cursor-pointer">
-              <a
-                href="https://github.com/marieooq/neo-brutalism-ui-library"
-                target="_blank"
-              >
+              <a href="https://github.com/marieooq/neo-brutalism-ui-library" target="_blank">
                 <img src={githubIcon} alt="github" className="w-6 h-6" />
               </a>
             </li>
@@ -49,22 +46,11 @@ const Header = () => {
         </button>
       </div>
       {/* side menu for mobile */}
-      <div
-        className={`navbar-menu relative z-50 ${
-          showSideMenu ? "block" : "hidden"
-        }`}
-      >
-        <div
-          className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"
-          onClick={closeSideMenu}
-        ></div>
+      <div className={`navbar-menu relative z-50 ${showSideMenu ? "block" : "hidden"}`}>
+        <div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25" onClick={closeSideMenu}></div>
         <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm bg-white border-r overflow-y-auto">
           <div className="flex justify-center items-center h-20 p-5">
-            <Link
-              to="/"
-              className="mr-auto text-2xl font-bold leading-none"
-              onClick={closeSideMenu}
-            >
+            <Link to="/" className="mr-auto text-2xl font-bold leading-none" onClick={closeSideMenu}>
               NEO-UI.
             </Link>
             <div>
@@ -76,13 +62,8 @@ const Header = () => {
           <div className="p-5">
             <ul className="flex flex-col">
               <div className="pb-8">
-                <span className="text-lg font-bold block mb-4">
-                  Getting started
-                </span>
-                <li
-                  className="inliine-block hover:underline hover:underline-offset-8 mb-4"
-                  onClick={closeSideMenu}
-                >
+                <span className="text-lg font-bold block mb-4">Getting started</span>
+                <li className="inliine-block hover:underline hover:underline-offset-8 mb-4" onClick={closeSideMenu}>
                   <Link to={"/overview"}>Overview</Link>
                 </li>
               </div>
@@ -92,10 +73,7 @@ const Header = () => {
               </div>
               <div className="pb-4">
                 <li className="inline-block cursor-pointer">
-                  <a
-                    href="https://github.com/marieooq/neo-brutalism-ui-library"
-                    target="_blank"
-                  >
+                  <a href="https://github.com/marieooq/neo-brutalism-ui-library" target="_blank">
                     <img src={githubIcon} alt="github" className="w-6 h-6" />
                   </a>
                 </li>

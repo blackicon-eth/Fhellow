@@ -7,6 +7,7 @@ type ButtonType = {
   color?: "violet" | "pink" | "red" | "orange" | "yellow" | "lime" | "cyan";
   disabled?: boolean;
   className?: string;
+  onClick?: () => void;
 };
 
 const Button = ({
@@ -16,6 +17,7 @@ const Button = ({
   color = "cyan",
   disabled,
   className,
+  onClick = () => {},
 }: ButtonType) => {
   return (
     <button
@@ -55,6 +57,7 @@ const Button = ({
         className
       )}
       disabled={disabled}
+      onClick={onClick}
     >
       {buttonText}
     </button>
