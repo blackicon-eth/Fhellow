@@ -1,5 +1,5 @@
 "use client";
-import Button from "../../lib/components/Button";
+import Button from "../lib/components/Button";
 import "../globals.css";
 
 export default function Home() {
