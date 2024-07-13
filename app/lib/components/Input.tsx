@@ -1,27 +1,16 @@
-import { useState } from "react";
 import classNames from "classnames";
 
 type InputType = {
   placeholder?: string;
-  focusColor?:
-    | "violet"
-    | "pink"
-    | "red"
-    | "orange"
-    | "yellow"
-    | "lime"
-    | "cyan";
+  type: "text" | "number";
+  focusColor?: "violet" | "pink" | "red" | "orange" | "yellow" | "lime" | "cyan";
   rounded?: "none" | "md" | "full";
   className?: string;
+  value: string | number;
+  onChange: (value: string) => void;
 };
 
-const Input = ({
-  placeholder,
-  focusColor = "pink",
-  rounded = "none",
-  className,
-}: InputType) => {
-  const [value, setValue] = useState("");
+const Input = ({ placeholder, type, focusColor = "pink", rounded = "none", className, value, onChange }: InputType) => {
   return (
     <input
       className={classNames(
@@ -38,12 +27,10 @@ const Input = ({
         { "rounded-full": rounded === "full" },
         className
       )}
-      type="text"
+      type={type}
       placeholder={placeholder}
       value={value}
-      onChange={(e) => {
-        setValue(e.target.value);
-      }}
+      onChange={(e) => onChange(e.target.value)}
     />
   );
 };
