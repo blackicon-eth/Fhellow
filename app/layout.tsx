@@ -5,6 +5,7 @@ import { cookieToInitialState } from "wagmi";
 import { config } from "@/config";
 import Web3ModalProvider from "@/context";
 import NeoBrutalistNavbar from "./lib/components/Navbar";
+import MusicPlayerFooter from "./lib/components/MusicPlayerFooter";
 
 export const metadata: Metadata = {
   title: "Fhellow",
@@ -23,6 +24,7 @@ export default function RootLayout({
         <Web3ModalProvider initialState={initialState}>
           <NeoBrutalistNavbar />
           {children}
+          <MusicPlayerFooter />
         </Web3ModalProvider>
       </body>
     </html>
