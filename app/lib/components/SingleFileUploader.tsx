@@ -1,10 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 import { pinFile } from "../../lib/lighthouse";
 import { useSignMessage, useAccount } from "wagmi";
 import axios from "axios";
+import { generateEncryptedArrayBuffer, generateEncryptedFile } from "../encryption";
 
-const SingleFileUploader = () => {
+const SingleFileUploader = ({
+  songTitle,
+  label,
+  price,
+  copies,
+}: {
+  songTitle: string;
+  label: string;
+  price: string;
+  copies: string;
+}) => {
   const { signMessage, data, isSuccess } = useSignMessage();
   const account = useAccount();
   const [file, setFile] = useState<File | null>(null);
@@ -29,15 +40,18 @@ const SingleFileUploader = () => {
     }
   };
 
-  const pinToIPFS = async () => {
+  const pinToIPFS = async (password: string) => {
     if (file && data && account.address) {
+      //const { encryptedArrayBuffer } = await generateEncryptedArrayBuffer(file, password);
+      //const encryptedFile = await generateEncryptedFile({ encryptedArrayBuffer });
       const cid = await pinFile(file, data, account.address);
+      console.log(cid);
       setCid(cid.Hash);
     }
   };
 
   const WriteOnFhenix = async () => {
-    // We will fill this out later
+    console.log(songTitle, label, price, copies);
   };
 
   return (
@@ -60,7 +74,7 @@ const SingleFileUploader = () => {
           {!isSuccess ? (
             <Button onClick={signIPFSMessage} rounded="md" buttonText="Sign Message" />
           ) : !cid ? (
-            <Button onClick={pinToIPFS} rounded="md" buttonText="Pin to IPFS" />
+            <Button onClick={() => pinToIPFS("password...")} rounded="md" buttonText="Pin to IPFS" />
           ) : (
             <Button onClick={WriteOnFhenix} rounded="md" color="pink" buttonText="Publish Song" />
           )}

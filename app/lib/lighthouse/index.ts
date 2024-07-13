@@ -6,7 +6,7 @@ export const getFiles = async (signedMessage: string, address: string) => {
   console.log(res);
 };
 
-export const pinFile = async (file: File, signedMessage: string, address: string) => {
+export const pinFile = async (file: File, signedMessage: string, address: string): Promise<any> => {
   const apiKey = await createApiKey(signedMessage, address);
   const uploadResponse = await lighthouse.uploadBuffer(file, apiKey.data.apiKey);
   console.log(uploadResponse.data);

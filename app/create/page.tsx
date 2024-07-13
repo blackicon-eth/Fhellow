@@ -5,6 +5,7 @@ import Button from "../lib/components/Button";
 import Input from "../lib/components/Input";
 import SingleFileUploader from "../lib/components/SingleFileUploader";
 import React, { useState } from "react";
+import axios from "axios";
 
 export default function Home() {
   // Setting the states for the form
@@ -47,15 +48,33 @@ export default function Home() {
           </div>
         </div>
 
-        <Button
+        {/* <Button
           buttonText="test change track"
           onClick={() => {
-            changeTrack("https://file-examples.com/storage/fe0e9b723466913cf9611b7/2017/11/file_example_MP3_700KB.mp3");
+            changeTrack(
+              "https://gateway.lighthouse.storage/ipfs/bafybeiaeax3inmgpavd5x77ckvkhhugei75xwvp7eaily5clzqptalvnfy"
+            );
           }}
-        />
+        /> */}
+
+        {/* <Button
+          buttonText="Decrypt File"
+          onClick={async () => {
+            // Download the track from IPFS
+            const cid = "Qm";
+            await axios.get(`${process.env.NEXT_PUBLIC_APP_URL}/api/get-enc-file`, {
+              params: { cid: cid },
+            });
+            // downloadFileFromIPFS(ipfsHash)
+            //   .then((filePath) => console.log(`File downloaded to: ${filePath}`))
+            //   .catch((error) => console.error(`Error downloading file: ${error.message}`));
+            // Decrypt the file
+            // Set the track in the player
+          }}
+        /> */}
 
         <div className="flex flex-col gap-3 pt-5 text-xl justify-start">
-          <SingleFileUploader />
+          <SingleFileUploader copies={copies} songTitle={songTitle} price={price} label={label} />
         </div>
       </div>
     </main>
