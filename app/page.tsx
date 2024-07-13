@@ -2,7 +2,7 @@
 import axios from "axios";
 import { ethers } from "ethers";
 import lighthouse from "@lighthouse-web3/sdk";
-import Button from "./lib/components/Button";
+import Link from 'next/link';
 
 const getFiles = async () => {
   const apikey = await createApiKey();
@@ -33,6 +33,8 @@ const createApiKey = async () => {
 
   return await getApiKey();
 };
+
+
 
 export default function Home() {
   return (
