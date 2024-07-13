@@ -2,6 +2,7 @@ import classNames from "classnames";
 
 type ButtonType = {
   buttonText: string;
+  plusIcon?: boolean;
   rounded?: "none" | "md" | "full";
   size?: "sm" | "md" | "lg";
   color?: "violet" | "pink" | "red" | "orange" | "yellow" | "lime" | "cyan";
@@ -12,6 +13,7 @@ type ButtonType = {
 
 const Button = ({
   buttonText = "Enabled",
+  plusIcon,
   rounded = "none",
   size = "md",
   color = "cyan",
@@ -59,7 +61,18 @@ const Button = ({
       disabled={disabled}
       onClick={onClick}
     >
-      {buttonText}
+      {plusIcon ? (
+        <div className="flex justify-center items-center gap-2 font-bold">
+          {buttonText}
+          <div className="flex justify-center items-center p-1 rounded-full bg-pink-300 border-black border-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.8425 24V0H13.1575V24H10.8425ZM0 13.1664V10.8336H24V13.1664H0Z" fill="black" />
+            </svg>
+          </div>
+        </div>
+      ) : (
+        <div className="font-bold">{buttonText}</div>
+      )}
     </button>
   );
 };
