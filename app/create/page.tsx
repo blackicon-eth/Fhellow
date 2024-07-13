@@ -1,5 +1,4 @@
 "use client";
-import { useWalletInfo, useWeb3Modal } from "@web3modal/wagmi/react";
 import "../globals.css";
 import Button from "../lib/components/Button";
 import Input from "../lib/components/Input";
