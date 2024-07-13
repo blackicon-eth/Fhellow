@@ -6,6 +6,7 @@ import { config } from "@/config";
 import Web3ModalProvider from "@/context";
 import NeoBrutalistNavbar from "./lib/components/Navbar";
 import MusicPlayerFooter from "./lib/components/MusicPlayerFooter";
+import { MusicPlayerProvider } from "@/context/musicPlayerContext";
 
 export const metadata: Metadata = {
   title: "Fhellow",
@@ -18,13 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const initialState = cookieToInitialState(config, headers().get("cookie"));
+
   return (
     <html lang="en">
       <body>
         <Web3ModalProvider initialState={initialState}>
-          <NeoBrutalistNavbar />
-          {children}
-          <MusicPlayerFooter />
+          <MusicPlayerProvider>
+            <NeoBrutalistNavbar />
+            {children}
+            <MusicPlayerFooter />
+          </MusicPlayerProvider>
         </Web3ModalProvider>
       </body>
     </html>

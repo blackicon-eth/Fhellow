@@ -1,4 +1,5 @@
 "use client";
+import { useMusicPlayer } from "@/context/musicPlayerContext";
 import "../globals.css";
 import Button from "../lib/components/Button";
 import Input from "../lib/components/Input";
@@ -11,6 +12,8 @@ export default function Home() {
   const [label, setLabel] = useState("");
   const [price, setPrice] = useState("");
   const [copies, setCopies] = useState("");
+
+  const { changeTrack } = useMusicPlayer();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -45,9 +48,9 @@ export default function Home() {
         </div>
 
         <Button
-          buttonText="Submit"
+          buttonText="test change track"
           onClick={() => {
-            console.log(songTitle, label, price, copies);
+            changeTrack("https://file-examples.com/storage/fe0e9b723466913cf9611b7/2017/11/file_example_MP3_700KB.mp3");
           }}
         />
 
