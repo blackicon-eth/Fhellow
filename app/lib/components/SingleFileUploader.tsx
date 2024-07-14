@@ -4,6 +4,8 @@ import { pinFile } from "../../lib/lighthouse";
 import { useSignMessage, useAccount } from "wagmi";
 import axios from "axios";
 import { generateEncryptedArrayBuffer, generateEncryptedFile } from "../encryption";
+import Link from "next/link";
+import { useMusicPlayer } from "@/context/musicPlayerContext";
 
 const SingleFileUploader = ({
   songTitle,
@@ -20,6 +22,7 @@ const SingleFileUploader = ({
   const account = useAccount();
   const [file, setFile] = useState<File | null>(null);
   const [cid, setCid] = useState("");
+  const { changeTrack } = useMusicPlayer();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -76,7 +79,19 @@ const SingleFileUploader = ({
           ) : !cid ? (
             <Button onClick={() => pinToIPFS("password...")} rounded="md" buttonText="Pin to IPFS" />
           ) : (
-            <Button onClick={WriteOnFhenix} rounded="md" color="pink" buttonText="Publish Song" />
+            <>
+              <Button onClick={WriteOnFhenix} rounded="md" color="pink" buttonText="Publish Song" />
+              <Link href={`https://gateway.lighthouse.storage/ipfs/${cid}`} target="_blank">
+                <Button rounded="md" color="orange" buttonText="See File" />
+              </Link>
+              <Button
+                buttonText="Listen"
+                rounded="md"
+                onClick={() => {
+                  changeTrack(`https://gateway.lighthouse.storage/ipfs/${cid}`);
+                }}
+              />
+            </>
           )}
         </div>
       )}
