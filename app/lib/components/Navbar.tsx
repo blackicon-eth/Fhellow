@@ -3,32 +3,26 @@ import React, { useState, useEffect } from "react";
 import Button from "./Button";
 import classNames from "classnames";
 import { useAccount } from "wagmi";
-import { useRouter } from 'next/navigation';
+import Link from "next/link";
 
 const NeoBrutalistNavbar = () => {
   const { address } = useAccount();
-  const router = useRouter(); // Utilizzato direttamente all'interno del corpo del componente
-  const [isMounted, setIsMounted] = useState(false);
-
-
-  const navigateToMyPage = () => {
-    if (address) {
-      console.log('Navigating to:', `/${address}`);
-      router.push(`/${address}`);
-    } else {
-      console.error('User address is not available.');
-    }
-  };
-
-  
 
   return (
     <nav className="flex fixed top-0 w-full bg-orange-300 p-3 pl-4 justify-between items-center border-b-2 border-black">
       <div className="flex gap-3 justify-center items-center">
-        <div className="text-3xl pr-6 font-extrabold">Fhellow</div>
-        <Button className="text-black" buttonText="Dashboard" rounded="md" />
-        <Button className="text-black" buttonText="My Page" rounded="md" onClick={navigateToMyPage} />
-        <Button className="text-black" buttonText="Create" plusIcon={true} rounded="md" />
+        <div className="text-3xl pr-6 font-extrabold">
+          <Link href="/">Fhellow</Link>
+        </div>
+        <Link href="/bought-songs">
+          <Button className="text-black" buttonText="Dashboard" rounded="md" />
+        </Link>
+        <Link href={`/${address ? address : "1"}`}>
+          <Button className="text-black" buttonText="My Songs" rounded="md" />
+        </Link>
+        <Link href="/create">
+          <Button className="text-black" buttonText="Create" plusIcon={true} rounded="md" />
+        </Link>
       </div>
       <div
         className={classNames(
